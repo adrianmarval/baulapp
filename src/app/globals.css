@@ -4,26 +4,20 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 248, 248, 248; /* Gris claro #EEEEEE */
+  --background-end-rgb: 248, 248, 248; /* Gris claro #EEEEEE */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 26, 26, 26; /* Gris oscuro para modo oscuro */
+    --background-end-rgb: 26, 26, 26; /* Gris oscuro para modo oscuro */
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-start-rgb)); /* Usa la variable CSS */
 }
 
 @layer utilities {
