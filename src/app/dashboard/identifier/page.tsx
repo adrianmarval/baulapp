@@ -26,9 +26,14 @@ const comments = [
 const DashboardPage = () => {
   return (
     <Box>
+      {/* Search Survey Bar */}
       <Card>
+        <form action="">
+
         <TextField className='w-full' id='outlined-basic' label='Introduce el Url o hostname' variant='outlined' />
+        </form>
       </Card>
+      {/* Comments */}
       <Card className='mt-10 flex flex-col items-center justify-center p-4'>
         <CommentList comments={comments} />
         <CommetBox />

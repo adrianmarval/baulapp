@@ -15,12 +15,18 @@ import Image from 'next/image';
 import {LogoutButton} from './LogoutButton';
 import {authOptions} from '@/app/api/auth/[...nextauth]/route';
 import {getServerSession} from 'next-auth';
-import {redirect} from 'next/navigation';
 import Link from 'next/link';
 
 interface Props {
   DRAWER_WIDTH: number;
 }
+
+const capitalizeFullName = (fullName: string): string => {
+  return fullName
+    .split(' ') // Dividir el nombre completo en palabras separadas por espacios
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalizar cada palabra
+    .join(' '); // Unir las palabras de nuevo en un solo string separado por espacios
+};
 
 const sidebarItems = [
   {
@@ -38,7 +44,7 @@ const sidebarItems = [
 export const Sidebar = async ({DRAWER_WIDTH}: Props) => {
   const session = await getServerSession(authOptions);
 
-  const username = session?.user?.name ?? 'No Username';
+  const username = session?.user?.name ? capitalizeFullName(session.user.name) : 'No Name';
   const profilePicture = session?.user?.image ?? '/profile.webp';
 
   return (

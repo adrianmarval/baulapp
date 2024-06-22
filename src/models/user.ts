@@ -1,12 +1,20 @@
 import {Schema, model, models} from 'mongoose';
-import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 
 const userSchema = new Schema(
   {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
-      unique: true, // Ensure emails are unique
+      unique: true,
     },
     password: {
       type: String,
@@ -16,9 +24,12 @@ const userSchema = new Schema(
   {timestamps: true}
 );
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', function (next) {
   if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.pbkdf2Sync(this.password, salt, 1000, 64, 'sha512').toString('hex');
+  this.password = `${salt}:${hash}`;
+  console.log('Hashed Password on save:', this.password); // Log para verificar el hash de la contraseña
   next();
 });
 

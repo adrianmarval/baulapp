@@ -9,7 +9,7 @@ export const addComent = async (comment: NewComment) => {
   try {
     await connectDb();
     await new Comment(comment);
-    revalidatePath('/dashboard');
+    revalidatePath('/dashboard/identifier');
     return {success: true, error: null};
   } catch (error) {
     console.log(error);

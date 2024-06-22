@@ -2,14 +2,20 @@
 
 import {commentSchema} from '@/validations/commentSchema';
 import {TextField, Button} from '@mui/material';
+import {useSession} from 'next-auth/react';
+import {redirect} from 'next/navigation';
 import toast from 'react-hot-toast';
 
 export const CommetBox = () => {
+  const {data: session} = useSession();
+
+  if (!session) redirect('/api/auth/signin');
+
   const handleSubmitComment = (formData: FormData) => {
     const newComment = {
       text: formData.get('text'),
-      userId: crypto.randomUUID(),
-      survey: crypto.randomUUID(),
+      userId: session?.user.id,
+      surveyId: crypto.randomUUID(),
     };
 
     const result = commentSchema.safeParse(newComment);

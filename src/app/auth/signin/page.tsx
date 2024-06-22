@@ -3,7 +3,7 @@ import {Spinner} from '@/components/common/Spinner';
 import {signIn, useSession} from 'next-auth/react';
 import {useEffect} from 'react';
 
-const SignInPage = () => {
+const SigninPage = () => {
   const {data: session, status} = useSession();
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SigninPage;
