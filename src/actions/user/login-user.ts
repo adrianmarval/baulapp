@@ -2,7 +2,7 @@
 
 import {connectDb} from '@/libs/mongodb';
 import User from '@/models/user';
-import bcrypt from 'bcrypt';
+import crypto from 'crypto';
 
 export const loginUser = async (email: string, password: string) => {
   try {
@@ -18,19 +18,26 @@ export const loginUser = async (email: string, password: string) => {
       throw new Error('Invalid credentials');
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const [salt, storedHash] = user.password.split(':');
+    const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+
+    const passwordMatch = storedHash === hash;
 
     if (!passwordMatch) {
       throw new Error('Invalid credentials');
     }
 
-    // Exclude password field from the returned user object for security.
-    const {password: _, ...userWithoutPassword} = user.toObject();
+    const {_id, firstName, lastName, email: userEmail, image} = user.toObject();
 
     return {
       success: true,
       message: 'Login successful!',
-      user: userWithoutPassword, // Return the user object without password
+      user: {
+        id: _id.toString(),
+        name: `${firstName} ${lastName}`,
+        email: userEmail,
+        image,
+      },
     };
   } catch (error) {
     console.error('Error during login:', error);

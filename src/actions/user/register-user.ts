@@ -2,13 +2,20 @@
 
 import {connectDb} from '@/libs/mongodb';
 import User from '@/models/user';
-import bcrypt from 'bcrypt';
+import {userSchema} from '@/validations/userSchema';
+import {z} from 'zod';
 
-export async function registerUser(email: string, password: string) {
+export async function registerUser(user: z.infer<typeof userSchema>) {
+  // Validar los datos del usuario
+  const validationResult = userSchema.safeParse(user);
+
+  if (!validationResult.success) {
+    return {success: false, message: 'Invalid user data', errors: validationResult.error.errors};
+  }
+
+  const {firstName, lastName, email, password} = validationResult.data;
+
   try {
-    if (!email || !password) {
-      return {success: false, message: 'Missing email or password'};
-    }
     await connectDb();
 
     const existingUser = await User.findOne({email});
@@ -17,9 +24,8 @@ export async function registerUser(email: string, password: string) {
       return {success: false, message: 'Email already registered'};
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({email, password: hashedPassword});
-    await user.save();
+    const newUser = new User({firstName, lastName, email, password});
+    await newUser.save();
 
     return {success: true, message: 'Registration successful!'};
   } catch (error) {
