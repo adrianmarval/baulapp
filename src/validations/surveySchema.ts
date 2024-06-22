@@ -1,14 +1,12 @@
 import {z} from 'zod';
 import validator from 'validator';
 
-// Función para validar que un string sea un hostname válido utilizando validator
 const isValidHostname = (value: string): boolean => {
   return validator.isFQDN(value);
 };
 
-// Función para validar que un string sea una URL válida utilizando validator
-const isValidUrl = (value: string): boolean => {
-  return validator.isURL(value);
+const isValidUrl = (value: string | undefined): boolean => {
+  return !value || validator.isURL(value);
 };
 
 export const surveySchema = z.object({
@@ -20,7 +18,7 @@ export const surveySchema = z.object({
     }),
   url: z
     .string()
-    .min(1)
+    .optional()
     .refine((value) => isValidUrl(value), {
       message: 'El campo url debe ser una URL válida',
     }),
