@@ -1,4 +1,4 @@
-import {Schema, Types, model, models} from 'mongoose';
+import {Schema, model, models} from 'mongoose';
 
 const surveySchema = new Schema(
   {
@@ -10,12 +10,11 @@ const surveySchema = new Schema(
       type: String,
       required: false,
     },
-    comments: [
-      {
-        type: Types.ObjectId,
-        ref: 'Comment',
-      },
-    ],
+    router: {
+      type: String,
+      required: true,
+    },
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
   },
   {timestamps: true}
 );

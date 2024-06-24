@@ -9,24 +9,19 @@ import {
   Toolbar,
   Typography,
   Box,
+  Avatar,
 } from '@mui/material';
 import {Search, Dashboard} from '@mui/icons-material';
 import Image from 'next/image';
 import {LogoutButton} from './LogoutButton';
-import {authOptions} from '@/app/api/auth/[...nextauth]/route';
+import {authOptions} from '@/app/api/auth/[...nextauth]/authOptions';
 import {getServerSession} from 'next-auth';
 import Link from 'next/link';
+import {capitalizeFullName} from '@/libs/utils';
 
 interface Props {
   DRAWER_WIDTH: number;
 }
-
-const capitalizeFullName = (fullName: string): string => {
-  return fullName
-    .split(' ') // Dividir el nombre completo en palabras separadas por espacios
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalizar cada palabra
-    .join(' '); // Unir las palabras de nuevo en un solo string separado por espacios
-};
 
 const sidebarItems = [
   {
@@ -35,8 +30,18 @@ const sidebarItems = [
     icon: <Dashboard />,
   },
   {
-    title: 'Buscar Jump',
-    path: '/dashboard/identifier',
+    title: 'Samplicio',
+    path: '/dashboard/samplicio',
+    icon: <Search />,
+  },
+  {
+    title: 'Spectrum',
+    path: '/dashboard/spectrum',
+    icon: <Search />,
+  },
+  {
+    title: 'Samplecube',
+    path: '/dashboard/spectrum',
     icon: <Search />,
   },
 ];
@@ -60,17 +65,14 @@ export const Sidebar = async ({DRAWER_WIDTH}: Props) => {
       variant='permanent'
       anchor='left'
     >
-      <Toolbar children={<Typography variant='h5'>Baul Privado</Typography>} />
+      <Toolbar>
+        <Typography variant='h5'>Baul Privado</Typography>
+      </Toolbar>
       <Divider />
       <Box className='mt-5 flex flex-col justify-center items-center h-52'>
-        <Image
-          src={profilePicture}
-          alt=''
-          width={150}
-          height={150}
-          priority
-          className='m-auto h-24 w-24 rounded-full object-cover md:h-36 md:w-36'
-        />
+        <Avatar className='text-8xl font-extrabold mb-4' sx={{width: 120, height: 120}}>
+          {username.charAt(0).toUpperCase()}
+        </Avatar>
         <Typography className='block text-lg font-semibold text-gray-600'>{username}</Typography>
         <Typography className='block text-gray-400'>User</Typography>
       </Box>

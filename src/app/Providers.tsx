@@ -11,7 +11,17 @@ export const Providers = ({children}: Props) => {
   return (
     <SessionProvider>
       {children}
-      <Toaster position='bottom-left' />
+      <Toaster
+        position='top-right'
+        toastOptions={{
+          style: {
+            minWidth: '350px', // Ancho mínimo
+            padding: '5px', // Relleno
+            fontSize: '1.25rem', // Tamaño de fuente
+    
+          },
+        }}
+      />
     </SessionProvider>
   );
 };

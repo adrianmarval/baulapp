@@ -5,10 +5,10 @@ import React from 'react';
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 interface Props {
-  profilePicture: string;
+  username: string;
 }
 
-export const ProfileAvatar = ({profilePicture}: Props) => {
+export const ProfileAvatar = ({username}: Props) => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -23,7 +23,7 @@ export const ProfileAvatar = ({profilePicture}: Props) => {
     <Box sx={{flexGrow: 0}}>
       <Tooltip title='Open settings'>
         <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-          <Avatar alt='Remy Sharp' src={profilePicture} />
+          <Avatar className='font-extrabold'>{username.charAt(0).toUpperCase()}</Avatar>
         </IconButton>
       </Tooltip>
       <Menu

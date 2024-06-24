@@ -20,6 +20,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default: '/profile.webp',
+    },
   },
   {timestamps: true}
 );
@@ -29,7 +33,6 @@ userSchema.pre('save', function (next) {
   const salt = crypto.randomBytes(16).toString('hex');
   const hash = crypto.pbkdf2Sync(this.password, salt, 1000, 64, 'sha512').toString('hex');
   this.password = `${salt}:${hash}`;
-  console.log('Hashed Password on save:', this.password); // Log para verificar el hash de la contraseña
   next();
 });
 

@@ -13,7 +13,7 @@ export function LogoutButton() {
 
   useEffect(() => {
     router.refresh();
-  }, [session]);
+  }, [session, router]);
 
   const openCenterPopup = (url: string, title: string) => {
     const dualScreenLeft = window.screenLeft ?? window.screenX;

@@ -22,5 +22,5 @@ export const surveySchema = z.object({
     .refine((value) => isValidUrl(value), {
       message: 'El campo url debe ser una URL válida',
     }),
-  comments: z.array(z.string()),
+  router: z.string().min(1, 'El campo router es requerido'),
 });
