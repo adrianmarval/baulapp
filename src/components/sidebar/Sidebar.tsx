@@ -41,7 +41,7 @@ const sidebarItems = [
   },
   {
     title: 'Samplecube',
-    path: '/dashboard/spectrum',
+    path: '/dashboard/samplecube',
     icon: <Search />,
   },
 ];
