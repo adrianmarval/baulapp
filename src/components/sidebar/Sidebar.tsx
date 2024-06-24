@@ -44,6 +44,11 @@ const sidebarItems = [
     path: '/dashboard/samplecube',
     icon: <Search />,
   },
+  {
+    title: 'Internos',
+    path: '/dashboard/internos',
+    icon: <Search />,
+  },
 ];
 
 export const Sidebar = async ({DRAWER_WIDTH}: Props) => {
