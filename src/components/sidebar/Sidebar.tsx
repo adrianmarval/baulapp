@@ -45,6 +45,11 @@ const sidebarItems = [
     icon: <Search />,
   },
   {
+    title: 'Cint',
+    path: '/dashboard/cint',
+    icon: <Search />,
+  },
+  {
     title: 'Internos',
     path: '/dashboard/internos',
     icon: <Search />,
