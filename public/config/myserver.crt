@@ -1,0 +1,76 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=TW, ST=Taiwan, L=Taipei, O=QNAP Systems Inc., OU=NAS, CN=TS Series NAS/name=NAS/emailAddress=admin@qnap.com
+        Validity
+            Not Before: Dec  4 05:33:42 2014 GMT
+            Not After : Dec  1 05:33:42 2024 GMT
+        Subject: C=TW, ST=Taiwan, L=Taipei, O=QNAP Systems Inc., OU=NAS, CN=TS Series NAS/name=NAS/emailAddress=admin@qnap.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (1024 bit)
+                Modulus:
+                    00:b4:d0:53:6d:9c:cb:aa:31:13:8c:92:75:85:6f:
+                    66:a4:d0:df:44:7a:12:49:da:ed:9e:fe:23:f1:64:
+                    c5:90:03:bc:9a:a8:d3:87:54:1b:b5:a6:83:9e:37:
+                    d0:60:b6:c8:ec:46:33:f3:ce:de:2b:4d:63:db:02:
+                    0f:36:b0:57:80:5d:9b:f7:f8:e9:6f:79:40:22:8c:
+                    c8:3d:a8:67:11:bd:ac:a8:84:a0:7c:77:e1:c6:db:
+                    2a:8c:d4:99:61:8f:1d:15:20:72:fa:4d:28:54:a6:
+                    e6:f5:c5:65:d8:ac:2b:44:c3:72:62:e1:0c:15:0a:
+                    60:f2:4b:fb:1d:82:a1:63:f7
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Server
+            Netscape Comment: 
+                Easy-RSA Generated Server Certificate
+            X509v3 Subject Key Identifier: 
+                F8:9D:D8:E0:7B:1E:03:1B:A5:A9:5C:96:E8:D2:C0:43:B5:21:13:F3
+            X509v3 Authority Key Identifier: 
+                keyid:89:39:6B:62:30:26:D8:7C:0C:06:47:F7:1A:CD:87:8F:EF:B4:A1:0D
+                DirName:/C=TW/ST=Taiwan/L=Taipei/O=QNAP Systems Inc./OU=NAS/CN=TS Series NAS/name=NAS/emailAddress=admin@qnap.com
+                serial:A5:DD:B2:07:95:C9:74:5A
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+    Signature Algorithm: sha1WithRSAEncryption
+         0d:31:b5:4e:8d:49:c2:c8:04:b3:8b:3f:7d:f3:c1:bc:e1:03:
+         bd:b4:d8:8b:b4:c5:ec:ab:6b:b0:6a:12:d3:19:2a:8a:28:f0:
+         3d:ae:c6:f7:17:26:90:32:5d:2e:14:00:e1:8c:15:b4:be:aa:
+         c1:c7:75:c0:ca:9e:6a:fd:83:aa:1f:53:50:fc:6d:61:34:39:
+         b3:82:52:1a:5b:ea:22:20:a6:33:ae:35:9d:7a:a6:07:f2:1b:
+         ab:8a:19:11:f2:8a:91:00:62:22:8e:da:18:8a:94:b3:c4:a0:
+         a5:d1:ff:9e:e0:30:d0:3c:24:66:42:0d:62:7f:ed:c0:57:63:
+         54:77
+-----BEGIN CERTIFICATE-----
+MIIEJTCCA46gAwIBAgIBATANBgkqhkiG9w0BAQUFADCBnjELMAkGA1UEBhMCVFcx
+DzANBgNVBAgTBlRhaXdhbjEPMA0GA1UEBxMGVGFpcGVpMRowGAYDVQQKExFRTkFQ
+IFN5c3RlbXMgSW5jLjEMMAoGA1UECxMDTkFTMRYwFAYDVQQDEw1UUyBTZXJpZXMg
+TkFTMQwwCgYDVQQpEwNOQVMxHTAbBgkqhkiG9w0BCQEWDmFkbWluQHFuYXAuY29t
+MB4XDTE0MTIwNDA1MzM0MloXDTI0MTIwMTA1MzM0MlowgZ4xCzAJBgNVBAYTAlRX
+MQ8wDQYDVQQIEwZUYWl3YW4xDzANBgNVBAcTBlRhaXBlaTEaMBgGA1UEChMRUU5B
+UCBTeXN0ZW1zIEluYy4xDDAKBgNVBAsTA05BUzEWMBQGA1UEAxMNVFMgU2VyaWVz
+IE5BUzEMMAoGA1UEKRMDTkFTMR0wGwYJKoZIhvcNAQkBFg5hZG1pbkBxbmFwLmNv
+bTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAtNBTbZzLqjETjJJ1hW9mpNDf
+RHoSSdrtnv4j8WTFkAO8mqjTh1QbtaaDnjfQYLbI7EYz887eK01j2wIPNrBXgF2b
+9/jpb3lAIozIPahnEb2sqISgfHfhxtsqjNSZYY8dFSBy+k0oVKbm9cVl2KwrRMNy
+YuEMFQpg8kv7HYKhY/cCAwEAAaOCAW8wggFrMAkGA1UdEwQCMAAwEQYJYIZIAYb4
+QgEBBAQDAgZAMDQGCWCGSAGG+EIBDQQnFiVFYXN5LVJTQSBHZW5lcmF0ZWQgU2Vy
+dmVyIENlcnRpZmljYXRlMB0GA1UdDgQWBBT4ndjgex4DG6WpXJbo0sBDtSET8zCB
+0wYDVR0jBIHLMIHIgBSJOWtiMCbYfAwGR/cazYeP77ShDaGBpKSBoTCBnjELMAkG
+A1UEBhMCVFcxDzANBgNVBAgTBlRhaXdhbjEPMA0GA1UEBxMGVGFpcGVpMRowGAYD
+VQQKExFRTkFQIFN5c3RlbXMgSW5jLjEMMAoGA1UECxMDTkFTMRYwFAYDVQQDEw1U
+UyBTZXJpZXMgTkFTMQwwCgYDVQQpEwNOQVMxHTAbBgkqhkiG9w0BCQEWDmFkbWlu
+QHFuYXAuY29tggkApd2yB5XJdFowEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0P
+BAQDAgWgMA0GCSqGSIb3DQEBBQUAA4GBAA0xtU6NScLIBLOLP33zwbzhA7202Iu0
+xeyra7BqEtMZKooo8D2uxvcXJpAyXS4UAOGMFbS+qsHHdcDKnmr9g6ofU1D8bWE0
+ObOCUhpb6iIgpjOuNZ16pgfyG6uKGRHyipEAYiKO2hiKlLPEoKXR/57gMNA8JGZC
+DWJ/7cBXY1R3
+-----END CERTIFICATE-----

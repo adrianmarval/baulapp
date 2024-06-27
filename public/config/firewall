@@ -1,0 +1,282 @@
+
+config defaults
+	option syn_flood '1'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option disable_ipv6 '1'
+
+config zone
+	option name 'lan'
+	list network 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+
+config zone
+	option name 'wan'
+	list network 'wan'
+	list network 'wan2'
+	list network 'wan3'
+	list network 'wan6'
+	list network 'module'
+	list network 'module_dhcpv6'
+	list network 'apcli0'
+	list network 'usb0'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+
+config zone
+	option name 'vpn'
+	option network 'vpn'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
+config rule
+	option name 'Allow-DHCP-Renew'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '68'
+	option target 'ACCEPT'
+	option family 'ipv4'
+
+config rule
+	option name 'Allow-Ping'
+	option src 'wan'
+	option proto 'icmp'
+	option icmp_type 'echo-request'
+	option family 'ipv4'
+	option target 'DROP'
+
+config rule
+	option name 'Allow-DHCPv6'
+	option src 'wan'
+	option proto 'udp'
+	option src_ip 'fe80::/10'
+	option src_port '547'
+	option dest_ip 'fe80::/10'
+	option dest_port '546'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Input'
+	option src 'wan'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	list icmp_type 'router-solicitation'
+	list icmp_type 'neighbour-solicitation'
+	list icmp_type 'router-advertisement'
+	list icmp_type 'neighbour-advertisement'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Forward'
+	option src 'wan'
+	option dest '*'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'DROP'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '547'
+	option name 'Allow DHCPv6 Relay'
+	option family 'ipv6'
+	option src_port '547'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option dest '*'
+	option proto 'udp'
+	option name 'Allow IPv6 FWD UDP'
+	option family 'ipv6'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option dest '*'
+	option proto 'tcp'
+	option name 'Allow IPv6 FWD TCP'
+	option family 'ipv6'
+
+config rule
+	option src 'wan'
+	option name 'iperf3 test'
+	option proto 'tcp'
+	option family 'IPv6'
+	option dest_port '5201'
+	option target 'ACCEPT'
+
+config rule
+	option src 'wan'
+	option name 'iperf3 test'
+	option proto 'udp'
+	option family 'IPv6'
+	option dest_port '5201'
+	option target 'ACCEPT'
+
+config rule
+	option src 'lan'
+	option proto 'tcp'
+	option dest_port '9100'
+	option target 'ACCEPT'
+
+config rule
+	option src 'lan'
+	option name 'WEBSSL'
+	option proto 'tcp'
+	option dest_port '443'
+	option target 'ACCEPT'
+
+config rule
+	option src 'lan'
+	option name 'SSH'
+	option proto 'tcp'
+	option target 'ACCEPT'
+	option dest_port '22'
+
+config rule
+	option src 'lan'
+	option name 'openvpn'
+	option proto 'udp'
+	option target 'ACCEPT'
+	option dest_port '1194'
+
+config include 'VOIP'
+	option type 'script'
+	option path '/etc/firewall.voip'
+	option family 'IPv4'
+	option reload '1'
+
+config include 'DMZ'
+	option type 'script'
+	option path '/etc/firewall.dmz'
+	option family 'IPv4'
+	option reload '1'
+
+config include 'CLOUDLINKDMZ'
+	option type 'script'
+	option path '/etc/firewall-cloudlink.dmz'
+	option family 'IPv4'
+	option reload '1'
+
+config include 'pfilter'
+	option type 'script'
+	option path '/etc/firewall.pfilter'
+	option family 'IPv4'
+	option reload '1'
+
+config include
+	option path '/etc/firewall.user'
+
+config rule
+	option src 'lan'
+	option proto 'tcp'
+	option dest_port '80'
+	option name 'WEBSERVER80'
+	option target 'ACCEPT'
+
+config rule
+	option src 'lan'
+	option proto 'tcp'
+	option dest_port '81'
+	option name 'WEBSERVER81'
+	option target 'ACCEPT'
+
+config rule
+	option src 'lan'
+	option proto 'tcp'
+	option dest_port '8080'
+	option name 'WEBSERVER8080'
+	option target 'ACCEPT'
+
+config rule
+	option src 'lan'
+	option proto 'tcp'
+	option dest_port '[::]:80'
+	option name 'WEBSERVER[::]:80'
+	option target 'ACCEPT'
+
+config redirect
+	option name 'sshred'
+	option src 'wan'
+	option dst 'lan'
+	option proto 'tcp'
+	option src_dport '9595'
+	option dest_port '22'
+
+config redirect
+	option name 'httpred'
+	option src 'wan'
+	option dst 'lan'
+	option proto 'tcp'
+	option src_dport '9494'
+	option dest_port '8080'
+
+config redirect
+	option name 'ovpnred'
+	option src 'wan'
+	option dst 'lan'
+	option proto 'udp'
+	option src_dport '9696'
+	option dest_port '1194'
+
+
+config include 'nodogsplash'
+	option type 'script'
+	option path '/usr/lib/nodogsplash/restart.sh'
+
+config include 'miniupnpd'
+	option type 'script'
+	option path '/usr/share/miniupnpd/firewall.include'
+	option family 'any'
+	option reload '1'
+
+config include 'mssfix'
+	option type 'script'
+	option path '/tmp/firewall.mssfix'
+	option family 'any'
+	option reload '1'
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn'
+
+config forwarding
+	option dest 'wan'
+	option src 'vpn'
+
+config forwarding
+	option dest 'vpn'
+	option src 'lan'
+

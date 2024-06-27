@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const SearchBar = ({router, session}: Props) => {
-  const {foundSurvey, setFoundSurvey} = useSurveyStore();
+  const {foundSurvey, setFoundSurvey, setSearchedSurvey} = useSurveyStore();
   const {form, handleSearch, isLoading} = useSearch(router);
 
   const {
@@ -49,6 +49,7 @@ export const SearchBar = ({router, session}: Props) => {
   useEffect(() => {
     if (foundSurvey) {
       setFoundSurvey(null);
+      setSearchedSurvey(null);
     }
   }, [router]);
 

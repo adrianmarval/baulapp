@@ -16,8 +16,11 @@ export const useCommentHandler = () => {
   const [isEditingComment, setIsEditingComment] = useState(false);
   const [isDeletingComment, setIsDeletingComment] = useState(false);
 
+  const host = searchedSurvey?.host || '';
+  const router = searchedSurvey?.router || '';
+
   const refreshComments = async () => {
-    const {survey, error} = await findSurveyByHostname(searchedSurvey.host, searchedSurvey.router);
+    const {survey, error} = await findSurveyByHostname(host, router);
     if (error) {
       toast.error(error);
       setFoundSurvey(null);
@@ -30,11 +33,14 @@ export const useCommentHandler = () => {
 
   const handleAddComment = async (newComment: z.infer<typeof commentSchema>) => {
     setIsAddingComment(true);
+    if (host === '') {
+      toast.error('Debes realizar una busqueda antes de comentar');
+      setIsAddingComment(false);
+      return;
+    }
 
     try {
-      const surveyData = foundSurvey
-        ? foundSurvey
-        : await addSurvey({host: searchedSurvey.host, router: searchedSurvey.router}).then(({survey}) => survey);
+      const surveyData = foundSurvey ? foundSurvey : await addSurvey({host, router}).then(({survey}) => survey);
       if (!surveyData) {
         throw new Error('No se pudo crear o encontrar la encuesta');
       }

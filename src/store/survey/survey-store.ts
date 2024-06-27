@@ -7,8 +7,8 @@ import {surveySchema} from '@/validations/surveySchema';
 interface SurveyState {
   foundSurvey: SurveyInterface | null;
   comments: CommentResponse[];
-  searchedSurvey: z.infer<typeof surveySchema>;
-  setSearchedSurvey: (searchedSurvey: z.infer<typeof surveySchema>) => void;
+  searchedSurvey: z.infer<typeof surveySchema> | null;
+  setSearchedSurvey: (searchedSurvey: z.infer<typeof surveySchema> | null) => void;
   setFoundSurvey: (foundSurvey: SurveyInterface | null) => void;
   setComments: (comments: CommentResponse[]) => void;
   addComment: (comment: CommentResponse) => void;
