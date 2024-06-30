@@ -19,7 +19,7 @@ interface SurveyState {
 export const useSurveyStore = create<SurveyState>((set) => ({
   foundSurvey: null,
   comments: [],
-  searchedSurvey: {host: '', router: '', url: ''},
+  searchedSurvey: null,
   setFoundSurvey: (foundSurvey) => set({foundSurvey}),
   setSearchedSurvey: (searchedSurvey) => set({searchedSurvey}),
   setComments: (comments) => set({comments}),

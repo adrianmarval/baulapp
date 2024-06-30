@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const SearchBar = ({router, session}: Props) => {
-  const {foundSurvey, setFoundSurvey, setSearchedSurvey} = useSurveyStore();
+  const {foundSurvey, searchedSurvey, setFoundSurvey, setSearchedSurvey} = useSurveyStore();
   const {form, handleSearch, isLoading} = useSearch(router);
 
   const {
@@ -47,10 +47,8 @@ export const SearchBar = ({router, session}: Props) => {
   };
 
   useEffect(() => {
-    if (foundSurvey) {
-      setFoundSurvey(null);
-      setSearchedSurvey(null);
-    }
+    setFoundSurvey(null);
+    setSearchedSurvey(null);
   }, [router]);
 
   if (!session) redirect('/api/auth/signin');
@@ -85,10 +83,12 @@ export const SearchBar = ({router, session}: Props) => {
         </form>
       </Card>
 
-      <Card className='mt-10 flex flex-col items-center justify-center p-4'>
-        {foundSurvey && <CommentList session={session} />}
-        <CommentBox session={session} foundSurvey={foundSurvey} />
-      </Card>
+      {foundSurvey || searchedSurvey ? (
+        <Card className='mt-10 flex flex-col items-center justify-center p-4'>
+          {foundSurvey && <CommentList session={session} />}
+          <CommentBox session={session} foundSurvey={foundSurvey} />
+        </Card>
+      ) : null}
     </Grid>
   );
 };
